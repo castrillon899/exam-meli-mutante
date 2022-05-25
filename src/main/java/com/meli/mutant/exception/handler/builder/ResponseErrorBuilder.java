@@ -10,19 +10,12 @@ import com.meli.mutant.exception.DNAException;
 import com.meli.mutant.exception.handler.model.ResponseError;
 import com.meli.mutant.util.BundleMessage;
 
-/**
- * Builder to generate {@link ResponseError}
- * 
- * @author <a href="mailto:mauricionrgarcia@gmail.com">Mauricio Garcia</a>
- * @version
- * @sinse 18/02/2018 20:44:18
- */
 public class ResponseErrorBuilder {
 
 	/**
 	 * Messaging
 	 */
-	private final transient BundleMessage bungleMessage;
+	private final BundleMessage bungleMessage;
 
 	/**
 	 * default code error messsage
@@ -48,8 +41,8 @@ public class ResponseErrorBuilder {
 	}
 
 	/**
-	 * if message is empty, try to find the message from the error code in the
-	 * external file: message.properties
+	 * si el mensaje es vacio, intenta incontrar el mensaje apartir de codigo de
+	 * error en el archivo message.proertoes
 	 * 
 	 * @param messageCode
 	 * @param argsMessage
@@ -66,7 +59,7 @@ public class ResponseErrorBuilder {
 	}
 
 	/**
-	 * define response error
+	 * define la estructura del error
 	 * 
 	 * @param e BusinessException
 	 * @return builder
@@ -81,7 +74,7 @@ public class ResponseErrorBuilder {
 	}
 
 	/**
-	 * define the code of response error
+	 * define el codigo de respuesta
 	 * 
 	 * @param code
 	 * @return builder
@@ -92,7 +85,7 @@ public class ResponseErrorBuilder {
 	}
 
 	/**
-	 * define the message of response error
+	 * define un mensaje de error
 	 * 
 	 * @param message message
 	 * @return builder
@@ -103,7 +96,7 @@ public class ResponseErrorBuilder {
 	}
 
 	/**
-	 * define the message of response error
+	 * define un mensaje de error apartir de codigo
 	 * 
 	 * @param messageCode code of message
 	 * @param argsMessage arguments of message
@@ -115,7 +108,7 @@ public class ResponseErrorBuilder {
 	}
 
 	/**
-	 * define the error message f response error
+	 * define el mensaje de error para ser retornado en la respuesta de error
 	 * 
 	 * @param errorMessage error message
 	 * @return builder
@@ -126,7 +119,7 @@ public class ResponseErrorBuilder {
 	}
 
 	/**
-	 * define the httpstatus of response error
+	 * define el codidgo de error http para ser retornado en la respuesta
 	 * 
 	 * @param httpStatus {@link HttpStatus}
 	 * @return builder

@@ -5,17 +5,15 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.ToString;
 
-@Data
 @Builder
 @ToString
-@Document(collection = "dna_result")
-public class DNAResult {
+@Document(collection = "dna_transaction")
+public class DNATransactionEntity {
 
 	@Id
-	private DNASequenceEntity dna;
+	private DNASequence dna;
 
 	@Indexed(name = "is_mutant")
 	private boolean isMutant;

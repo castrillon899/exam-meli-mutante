@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.aggregation.ComparisonOperators;
 import org.springframework.data.mongodb.core.aggregation.ConditionalOperators;
 import org.springframework.stereotype.Repository;
 
-import com.meli.mutant.entity.DNAResult;
+import com.meli.mutant.entity.DNATransactionEntity;
 import com.meli.mutant.entity.DNAStatus;
 import com.meli.mutant.repository.DNAStatusRepository;
 
@@ -24,43 +24,27 @@ public class DNAStatusRepositoryImpl implements DNAStatusRepository {
 
 	private static final Logger log = LoggerFactory.getLogger(DNAStatusRepositoryImpl.class);
 
-	/**
-	 * {@link MongoTemplate}
-	 */
 	@Autowired
-	private transient MongoTemplate template;
+	private MongoTemplate template;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.mercadolibre.exam.mutant.repository.DNAStatusRepository#getSummaryStatus(
-	 * )
-	 */
 	@Override
 	public DNAStatus getSummaryStatus() {
-		log.debug("Repository, find summary status");
+		log.debug("Obteniendo las estadisticas actuales");
 
 		DNAStatus status = findSumResult();
-		BigDecimal ratio = calcRatio(status);
+		BigDecimal ratio = getRatio(status);
 		status.setRatio(ratio);
-
 		return status;
 
 	}
 
 	/**
-	 * Calculate the ratio between mutant / human<br>
-	 * R - ratio<br>
-	 * M - mutant count<br>
-	 * H - human count
-	 * 
-	 * R = M / H
+	 * Obtiene el ratio de las estadisticas obtenidas
 	 * 
 	 * @param status
 	 * @return
 	 */
-	private BigDecimal calcRatio(DNAStatus status) {
+	private BigDecimal getRatio(DNAStatus status) {
 		BigDecimal ratio = BigDecimal.ZERO;
 
 		if (status.getMutantCount() != 0) {
@@ -89,7 +73,7 @@ public class DNAStatusRepositoryImpl implements DNAStatusRepository {
 			.count().as("total")
 		);
 
-		AggregationResults<DNAStatus> result = this.template.aggregate(aggregation, DNAResult.class, DNAStatus.class);
+		AggregationResults<DNAStatus> result = this.template.aggregate(aggregation, DNATransactionEntity.class, DNAStatus.class);
 		// @formatter:on
 
 		DNAStatus status = result.getUniqueMappedResult();

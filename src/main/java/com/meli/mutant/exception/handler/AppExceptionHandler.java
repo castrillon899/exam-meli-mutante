@@ -22,11 +22,7 @@ import com.meli.mutant.exception.handler.model.ResponseError;
 import com.meli.mutant.util.BundleMessage;
 
 /***
- * Intercept exception**
- * 
- * @author <a href="mailto:mauricionrgarcia@gmail.com">Mauricio Garcia</a>
- * @version
- * @sinse 11/11/2018 18:16:39
+ * clase que permite intercertar errores
  */
 @ControllerAdvice
 public class AppExceptionHandler extends ResponseEntityExceptionHandler {
@@ -41,7 +37,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 	 * Exception handling for business exception
 	 *
 	 * @param ex      exception
-	 * @param request reqeust
+	 * @param request requesst
 	 * @return {@link ResponseEntity}
 	 */
 	@ExceptionHandler({ DNAException.class })

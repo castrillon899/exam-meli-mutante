@@ -1,9 +1,9 @@
 package com.meli.mutant.service;
 
-import com.meli.mutant.domain.DNASequence;
+import com.meli.mutant.dto.SequenceDNARequestDTO;
 
 public interface MutantService {
 
-	public boolean isMutant(DNASequence dna);
+	public boolean isMutant(SequenceDNARequestDTO dna);
 
 }

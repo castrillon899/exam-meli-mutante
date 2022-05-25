@@ -13,17 +13,17 @@ public class DNAException extends RuntimeException {
 	/**
 	 * error code
 	 */
-	private String code;
+	private  String code;
 
 	/**
 	 * represent the {@link HttpStatus} code
 	 */
-	private HttpStatus statusCode;
+	private  HttpStatus statusCode;
 
 	/**
 	 * error mesage (business)
 	 */
-	private String message;
+	private  String message;
 
 	/**
 	 * description of the error message (developer)

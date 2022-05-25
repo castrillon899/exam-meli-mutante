@@ -24,7 +24,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.meli.mutant.domain.DNAStats;
 import com.meli.mutant.dto.StatsDNAResponseDTO;
 
 @RunWith(SpringRunner.class)

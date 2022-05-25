@@ -6,12 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.meli.mutant.entity.DNAResult;
-import com.meli.mutant.entity.DNASequenceEntity;
-import com.meli.mutant.domain.DNASequence;
-import com.meli.mutant.exception.DNAInvalideLengthException;
-import com.meli.mutant.exception.DNAInvalidePatternBaseException;
+import com.meli.mutant.entity.DNATransactionEntity;
+import com.meli.mutant.entity.DNASequence;
+import com.meli.mutant.dto.SequenceDNARequestDTO;
+import com.meli.mutant.exception.DNALengthInvalideException;
+import com.meli.mutant.exception.DNAPatternInvalideBaseException;
 import com.meli.mutant.repository.DNAResultRepository;
 import com.meli.mutant.service.detector.DetectorMutantService;
 
@@ -27,7 +26,7 @@ public class MutantServiceImp implements MutantService {
 	@Autowired
 	private DNAResultRepository dnaResultRepository;
 
-	public boolean isMutant(DNASequence dna) {
+	public boolean isMutant(SequenceDNARequestDTO dna) {
 		log.debug("Iniciando proceso de validacion si es humano mutante dada una secuencia '{}'", dna);
 		boolean isMutant = isDNAMutant(dna);
 		saveQuery(dna, isMutant);
@@ -35,14 +34,14 @@ public class MutantServiceImp implements MutantService {
 
 	}
 
-	private void saveQuery(DNASequence dna, boolean isMutante) {
+	private void saveQuery(SequenceDNARequestDTO dna, boolean isMutante) {
 
-		DNASequenceEntity dnaSequenceEntity = DNASequenceEntity.builder().dna(dna.getDna()).build();
-		DNAResult result = DNAResult.builder().dna(dnaSequenceEntity).isMutant(isMutante).build();
+		DNASequence dnaSequenceEntity = DNASequence.builder().dna(dna.getDna()).build();
+		DNATransactionEntity result = DNATransactionEntity.builder().dna(dnaSequenceEntity).isMutant(isMutante).build();
 		this.dnaResultRepository.save(result);
 	}
 
-	private boolean isDNAMutant(DNASequence dnaSequence) {
+	private boolean isDNAMutant(SequenceDNARequestDTO dnaSequence) {
 
 		if (dnaSequence.getDna() == null || dnaSequence.getDna().size() <= SIZE_MINIMO_DNA_MUTANTE) {
 			log.debug(
@@ -59,7 +58,7 @@ public class MutantServiceImp implements MutantService {
 
 	}
 
-	private char[][] loadDNAToMatrix(DNASequence dnaSequence) {
+	private char[][] loadDNAToMatrix(SequenceDNARequestDTO dnaSequence) {
 		log.debug("Iniciando carga de DNA a la matriz dna temporal");
 		int vectorLength = dnaSequence.getDna().size();
 		char[][] dnaMatrix = new char[vectorLength][vectorLength];
@@ -76,10 +75,10 @@ public class MutantServiceImp implements MutantService {
 		if (dna.length() != dnaLength) {
 			log.error("El DNA que se intenta cargar no es valido. experado {}, recibido {}:  DNA{} ", dnaLength,
 					dna.length(), dna);
-			throw new DNAInvalideLengthException(dnaLength, dna.length());
+			throw new DNALengthInvalideException(dnaLength, dna.length());
 		} else if (!DNA_PATTERN.matcher(dna).matches()) {
 			log.error("La secuencia de DNA son invalidados, solo son permitidos A, T, C E G. RECIBIDO {}", dna);
-			throw new DNAInvalidePatternBaseException(dna);
+			throw new DNAPatternInvalideBaseException(dna);
 		}
 	}
 
