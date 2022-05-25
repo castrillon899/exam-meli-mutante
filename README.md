@@ -28,21 +28,21 @@
 >cuales representa cada base nitrogenada del ADN.
 
 ## No-Mutante 
->A T G C G A 
->C A G T G C
->T T A T T T
->A G A C G G
->G C G T C A
->T C A C T G
+* A T G C G A 
+* C A G T G C
+* T T A T T T
+* A G A C G G
+* G C G T C A
+* T C A C T G
 
 
 ### Mutante
-> A T G C G A
-> C A G T G C
-> T T A T G T
->A G A A G G
->C C C C T A
->T C A C T G
+* A T G C G A
+* C A G T G C
+* T T A T G T
+* A G A A G G
+* C C C C T A
+* T C A C T G
 
 > Sabrás si un humano es mutante, si encuentras más de una secuencia de cuatro letras
 > iguales​, de forma oblicua, horizontal o vertical.
