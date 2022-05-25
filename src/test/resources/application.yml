@@ -1,0 +1,24 @@
+# ===================================================================
+# Spring Boot configuration for the "dev" profile.
+#
+# Common config see the application.yml file.
+# ===================================================================
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      user:
+      repositories:
+        type: AUTO
+      database: trackdb
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: DEBUG
+    com.meli.mutant: DEBUG
+    org.springframework.integration: info
+    org.springframework.data.mongodb: info
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
