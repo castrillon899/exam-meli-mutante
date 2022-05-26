@@ -3,21 +3,24 @@ package com.meli.mutant.service.detector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DianonalUpSequenceProcessor extends DianonalSequenceProcessor {
+public class DiagonalUpSequenceProcessor extends DiagonalSequenceProcessor {
 
-	private static final Logger log = LoggerFactory.getLogger(DianonalUpSequenceProcessor.class);
+	private static final Logger log = LoggerFactory.getLogger(DiagonalUpSequenceProcessor.class);
 	private static final DirectionMatrix DIRECTION = DirectionMatrix.DIAGONAL_UP;
 
-	public DianonalUpSequenceProcessor(DetectorContext context) {
+	public DiagonalUpSequenceProcessor(DetectorContext context) {
 		super(context);
 	}
 
 	@Override
 	public void searchMutanteSequences() {
-		log.debug("Analyze colums of given dna sequence at direction {}: ", DIRECTION);
+		log.debug("validacion secuencias dna matriz en dirreccion {}: ", DIRECTION);
 		char[][] dna = context.getDna();
 
+		// Nos ubicamos en la ultima fila para recorrer apartir de ahi
 		int fistIndexRow = dna.length - 1;
+
+		// Nos ubicamos en la primera columna
 		int fistIndexColumn = 0;
 		boolean match = findMutantSequence(Coordinate.at(dna, fistIndexRow, fistIndexColumn));
 		if (match) {
@@ -46,8 +49,8 @@ public class DianonalUpSequenceProcessor extends DianonalSequenceProcessor {
 	protected boolean hasNext(Coordinate coordinate, int actualSequence) {
 		int index = coordinate.subIndex;
 		int available = coordinate.size - index;
-		return available + actualSequence >= context.getSequenceToMudant()
-				&& coordinate.row - 1 >= 0 && coordinate.column+1 < coordinate.size;
+		return available + actualSequence >= context.getSequenceToMudant() && coordinate.row - 1 >= 0
+				&& coordinate.column + 1 < coordinate.size;
 	}
 
 }

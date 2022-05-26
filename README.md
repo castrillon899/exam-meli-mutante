@@ -1,19 +1,49 @@
 # Prueba Tecnica Mercado Libre 
 ### Determinar si es humano mutante
-- fecha creacion: 25/02/2022
-- autor: Angel Marin Castrillon
-- email: castrillon89@gmail.com
-- direccion: https://github.com/castrillon899/exam-meli-mutante.git branch master
+- Fecha creacion: 25/02/2022
+- Autor: Angel Marin Castrillon
+- Email: castrillon89@gmail.com
+- Direccion: https://github.com/castrillon899/exam-meli-mutante.git branch master
 
 ---
 
 ### Tecnologias usadas: 
 - springBoot: Extension de spring framework que nos permite disponibilizar aplicaciones en cuestion de minutos
-- mongoDb: Base de datos que nos permite almacenar la informacion relacionas al caso de uso
+- mongoDb: Base de datos que nos permite almacenar y consultar informacion rapidamente, relacionada al caso de uso 
 - Git: Versionador de codigo
-- Heroku: Usado para el despliegue de la aplicacion
+- Heroku: Usado para el despliegue de la aplicacion en nube
+- Java 1.8
+
 
 ---
+
+### Precondiciones: 
+
+
+| escenario de prueba | prueba unitaria |
+| ------ | ------ |
+| validar que se envie al menos una secuencia de dna | invalidRequestWithoutDNA |
+| validar consistencia de los dna enviados, todos deben tener la misma longitud | invalidRequestInconsistentLength |
+| validar que la secuencia de DNA enviada sea valida  | invalidRequestInvalidNitrogenousBase |
+| validar que el dna sea humano no mutante | test02TestHumanDNA |
+| evitar secuencias dna repetidas en base de datos | test02aTestOnlyOneDNA |
+| consultar estadisticas de humano mutante | test03StatsOneHuman |
+| encontrar humano mutante en diagonal abajo hacia arriba | test04MutantDiagnonalUPLastPositionValid |
+| validar secuencias dna validas minimas para determinar si es humano mutante | test05humanDiagnonalUPOneSequenceAtRowZero |
+| encontrar humano mutante en diagonal arriba hacia abajo | test06mutantDiagnonalDOWNRespectiveLastLine |
+| encontrar humano mutante en matriz horizontal | test07mutantHorizontal |
+| encontrar humano mutante en matriz vertical | test08mutantVertical |
+| consulta de estadisticas de humanos mutantes encontrados vs humanos | test09StatsMutantHuman |
+| Validar si la secuencias enviada de dnas, los item de dna en su longitud son >=4 para determinar si es humano mutante | test10HumanSequenceLessThan4 |
+| ------ | ------ |
+
+### Arquitectura de solucion: 
+
+
+![REPOSITORIO_ARQUITECTURA](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+
+---
+
 ## Enunciado
 > Magneto quiere reclutar la mayor cantidad de mutantes para poder luchar
 > contra los X-Men.

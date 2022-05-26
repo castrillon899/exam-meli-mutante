@@ -12,12 +12,25 @@ public abstract class MutantDetectorProcessor {
 		this.context = context;
 	}
 
+	/**
+	 * Realiza la busqueda deacuerdo a la direccion configurada
+	 */
 	protected abstract void searchMutanteSequences();
 
+	/**
+	 * Realiza el movimiento deacuerdo a la direccion implementada
+	 */
 	protected abstract void moveNext(Coordinate coordinate);
 
+	/**
+	 * valida si el flujo puede realizar un proximo movimiento
+	 */
 	protected abstract boolean hasNext(Coordinate coordinate, int actualSequence);
 
+	/**
+	 * Metodo generido que permite buscar una secuencia de DNA en una matriz
+	 * decuerdo a la direccion configurada
+	 */
 	protected boolean findMutantSequence(Coordinate coordidate) {
 		char currentChar = coordidate.dna[coordidate.row][coordidate.column];
 		int sequence = 1;
@@ -43,6 +56,9 @@ public abstract class MutantDetectorProcessor {
 		return Boolean.FALSE;
 	}
 
+	/**
+	 * Actualiza la secuencia de dnas encontradas
+	 */
 	protected void newSequenceMatch() {
 		context.setMatchs(context.getMatchs() + 1);
 

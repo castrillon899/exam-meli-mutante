@@ -17,12 +17,12 @@ import org.springframework.stereotype.Repository;
 
 import com.meli.mutant.entity.DNATransactionEntity;
 import com.meli.mutant.entity.DNAStatus;
-import com.meli.mutant.repository.DNAStatusRepository;
+import com.meli.mutant.repository.DNAStatsRepository;
 
 @Repository
-public class DNAStatusRepositoryImpl implements DNAStatusRepository {
+public class DNAStatsRepositoryImpl implements DNAStatsRepository {
 
-	private static final Logger log = LoggerFactory.getLogger(DNAStatusRepositoryImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(DNAStatsRepositoryImpl.class);
 
 	@Autowired
 	private MongoTemplate template;

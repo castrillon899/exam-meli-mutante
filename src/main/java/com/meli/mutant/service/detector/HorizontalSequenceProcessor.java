@@ -12,10 +12,15 @@ public class HorizontalSequenceProcessor extends MutantDetectorProcessor {
 		super(context);
 	}
 
+	
+	
+	
 	@Override
 	protected void searchMutanteSequences() {
-		log.debug("Analyze colums of given dna sequence at direction {}: ", DIRECTION);
+		log.debug("validacion secuencias dna matriz en dirreccion {}: ", DIRECTION);
 		char[][] dna = context.getDna();
+		
+		//El objetivo es recorrer fila por fila para encontrar secuencias DNA
 		for (int row = 0; row < dna.length; row++) {
 			boolean match = findMutantSequence(Coordinate.at(dna, row, 0));
 			if (match) {
@@ -24,6 +29,9 @@ public class HorizontalSequenceProcessor extends MutantDetectorProcessor {
 		}
 	}
 
+	/**
+	 * Realiza el siguiente movimiento en la secencia configurada
+	 */
 	@Override
 	protected void moveNext(Coordinate coordinate) {
 		coordinate.column++;
@@ -32,6 +40,10 @@ public class HorizontalSequenceProcessor extends MutantDetectorProcessor {
 		coordinate.curruntChar = coordinate.dna[coordinate.row][coordinate.column];
 	}
 
+	
+	/**
+	 * valida si el flujo puede realizar un proximo movimiento
+	 */
 	@Override
 	protected boolean hasNext(Coordinate coordinate, int actualSequence) {
 		return coordinate.column + 1 <= coordinate.safeIndex;

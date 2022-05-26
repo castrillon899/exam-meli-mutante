@@ -1,7 +1,7 @@
 package com.meli.mutant.repository;
 
 
-public interface DNAStatusRepository {
+public interface DNAStatsRepository {
 	/**
 	 * Statistics of verifications
 	 * 

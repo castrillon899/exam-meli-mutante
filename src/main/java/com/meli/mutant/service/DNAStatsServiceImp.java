@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.meli.mutant.dto.StatsDNAResponseDTO;
-import com.meli.mutant.repository.DNAStatusRepository;
+import com.meli.mutant.repository.DNAStatsRepository;
 
 @Service
 public class DNAStatsServiceImp implements DNAStatsService {
@@ -15,7 +15,7 @@ public class DNAStatsServiceImp implements DNAStatsService {
 	private static final Logger log = LoggerFactory.getLogger(DNAStatsServiceImp.class);
 
 	@Autowired
-	private DNAStatusRepository dnaStatusRepository;
+	private DNAStatsRepository dnaStatusRepository;
 
 	public StatsDNAResponseDTO getStats() {
 		log.debug("Find statistics of verifications the exposed method (humans, mutants and ratio)");

@@ -23,27 +23,20 @@ public class DetectorMutantService {
 		registerProcessor(horizontal);
 		MutantDetectorProcessor vertical = new VerticalSequenceProcessor(context);
 		registerProcessor(vertical);
-		MutantDetectorProcessor diagnonal = new DianonalSequenceProcessor(context);
+		MutantDetectorProcessor diagnonal = new DiagonalSequenceProcessor(context);
 		registerProcessor(diagnonal);
-		MutantDetectorProcessor diagnonalUP = new DianonalUpSequenceProcessor(context);
+		MutantDetectorProcessor diagnonalUP = new DiagonalUpSequenceProcessor(context);
 		registerProcessor(diagnonalUP);
 	}
 
-	/**
-	 * @return true if find the count DNA sequences needed to consider a Mutant
-	 */
 	public boolean isMutante() {
 		for (MutantDetectorProcessor processor : processors) {
-			// TODO Evoluir para processamento assincrono e adicionar observable para
-			// interroper os processos
 			processor.searchMutanteSequences();
 			if (processor.hasMatchSequencesMutant()) {
 				break;
 			}
 		}
 
-		// TODO - implementar controller observable para esperar o retorno dos processos
-		// TODO - remover os breaks espealhados
 		return context.getMatchs() >= context.getCountSequencesMatchMutant();
 	}
 

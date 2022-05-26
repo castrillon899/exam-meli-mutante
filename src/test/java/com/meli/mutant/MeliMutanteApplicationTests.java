@@ -43,9 +43,8 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Test - Mutant/Human - Status
+	 * Test 1 - validar estadisticas iniciales cuando inicia el programa
 	 * 
-	 * @throws Exception
 	 */
 	@Test
 	public void test01StatsTestBegin() throws Exception {
@@ -62,7 +61,6 @@ public class MeliMutanteApplicationTests {
 		byte[] content = result.andReturn().getResponse().getContentAsByteArray();
 
 		StatsDNAResponseDTO dnaResult = new ObjectMapper().readValue(content, StatsDNAResponseDTO.class);
-		System.out.println(dnaResult);
 	//	
 		
 		Assert.assertEquals(true,dnaResult.getHumanCount()==0L);
@@ -74,9 +72,8 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Test without Mutant sequences
+	 * Test 2 consulta humano no mutante, retorna un 403
 	 * 
-	 * @throws Exception
 	 */
 	@Test
 	public void test02TestHumanDNA() throws Exception {
@@ -102,9 +99,8 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Test one DNA only
-	 * 
-	 * @throws Exception
+	 * Test 3, Consultamos al api tres veces con la misma informacion de humano no
+	 * mutante El sistema no debe registrar dnas duplicados
 	 */
 	@Test
 	public void test02aTestOnlyOneDNA() throws Exception {
@@ -144,7 +140,8 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Test - Mutant - Test Diagonal UP - find in last position valid
+	 * Test - Humano mutante - Comprobacion de humano mutante apartir de diagonal
+	 * hacia arriba
 	 * 
 	 * @throws Exception
 	 */
@@ -153,11 +150,11 @@ public class MeliMutanteApplicationTests {
 		// @formatter:off
 		String request = "{\n" + 
 				"	\"dna\": [\"AACCCC\",\n" + 
-				"	        \"CTCAGC\",\n" + 
-				"	        \"ACCAAA\",\n" + 
-				"	        \"ACAAAC\",\n" + 
-				"	        \"CAAATC\",\n" + 
-				"	        \"CAACAA\"]\n" + 
+				"	          \"CTCAGC\",\n" + 
+				"	          \"ACCAAA\",\n" + 
+				"	          \"ACAAAC\",\n" + 
+				"	          \"CAAATC\",\n" + 
+				"	          \"CAACAA\"]\n" + 
 				"}\n" + 
 				""; 
 		mockMvc.perform(
@@ -169,47 +166,22 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Test - Mutant - Test Diagonal UP - find at row 0
+	 * Test - Humano no mutante - Solo se encuentra secuencia DNA valida diagonal
+	 * hacia arriba,
 	 * 
 	 * @throws Exception
 	 */
 	@Test
-	public void test05mutantDiagnonalUPAtRowZero() throws Exception {
-		// @formatter:off
-		String request = "{\n" + 
-				"	\"dna\": [\"AACCCCT\",\n" + 
-				"	        \"CTCACTT\",\n" + 
-				"	        \"ACCCTAT\",\n" + 
-				"	        \"ACCTACC\",\n" + 
-				"	        \"CAACTCC\",\n" + 
-				"	        \"CAACAAT\",\n" + 
-				"	        \"CAACAAT\"]\n" + 
-				"}\n" + 
-				""; 
-		mockMvc.perform(
-				post("/mutant/")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(request.getBytes()))
-				.andExpect(status().isOk());
-		// @formatter:on
-	}
-
-	/**
-	 * Test - Human - Teste Diagonal UP - find only 1 sequence at row 0
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void test06humanDiagnonalUPOneSequenceAtRowZero() throws Exception {
+	public void test05humanDiagnonalUPOneSequenceAtRowZero() throws Exception {
 		// @formatter:off
 		String request = "{\n" + 
 				"	\"dna\": [\"AATCCCA\",\n" + 
-				"	        \"CTCACTT\",\n" + 
-				"	        \"ACCCTAT\",\n" + 
-				"	        \"ACCTACC\",\n" + 
-				"	        \"CAATTCC\",\n" + 
-				"	        \"CAACAAT\",\n" + 
-				"	        \"CAACAAT\"]\n" + 
+				"	          \"CTCACTT\",\n" + 
+				"	          \"ACCCTAT\",\n" + 
+				"	          \"ACCTACC\",\n" + 
+				"	          \"CAATTCC\",\n" + 
+				"	          \"CAACAAT\",\n" + 
+				"	          \"CAACAAT\"]\n" + 
 				"}"; 
 		mockMvc.perform(
 				post("/mutant/")
@@ -220,21 +192,21 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Test - Mutant - Teste Diagonal DOWN respective last lines
+	 * Test - Humano mutante - Diagonal hacia abajo se encuentra secuencia
 	 * 
 	 * @throws Exception
 	 */
 	@Test
-	public void test07mutantDiagnonalDOWNRespectiveLastLine() throws Exception {
+	public void test06mutantDiagnonalDOWNRespectiveLastLine() throws Exception {
 		// @formatter:off
 		String request = "{\n" + 
-				"	\"dna\": [\"AATACCA\",\n" + 
-				"	        \"CTCAATT\",\n" + 
-				"	        \"ACCCTAT\",\n" + 
-				"	        \"ACCTACA\",\n" + 
-				"	        \"CAATTCC\",\n" + 
-				"	        \"CAACAAT\",\n" + 
-				"	        \"CAAAAAT\"]\n" + 
+				"	\"dna\":  [\"AATACCA\",\n" + 
+				"	           \"CTCAATT\",\n" + 
+				"	           \"ACCCTAT\",\n" + 
+				"	           \"ACCTACA\",\n" + 
+				"	           \"CAATTCC\",\n" + 
+				"	           \"CAACAAT\",\n" + 
+				"	           \"CAAAAAT\"]\n" + 
 				"}\n" + 
 				""; 
 		mockMvc.perform(
@@ -246,21 +218,21 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Test - Mutante - Test Horizontal
+	 * Test - Humano mutante - Prueba secuencia horizontal fila 0 y 6
 	 * 
 	 * @throws Exception
 	 */
 	@Test
-	public void test08mutantHorizontal() throws Exception {
+	public void test07mutantHorizontal() throws Exception {
 		// @formatter:off
 		String request = "{\n" + 
 				"	\"dna\": [\"ACCCCCT\",\n" + 
-				"	        \"CTCACTT\",\n" + 
-				"	        \"ACCCTAT\",\n" + 
-				"	        \"ACCTACC\",\n" + 
-				"	        \"CAACTCC\",\n" + 
-				"	        \"CAACAAT\",\n" + 
-				"	        \"CAACCCC\"]\n" + 
+				"	          \"CTCACTT\",\n" + 
+				"	          \"ACCCTAT\",\n" + 
+				"	          \"ACCTACC\",\n" + 
+				"	          \"CAACTCC\",\n" + 
+				"	          \"CAACAAT\",\n" + 
+				"	          \"CAACCCC\"]\n" + 
 				"}\n" + 
 				""; 
 		mockMvc.perform(
@@ -272,21 +244,21 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Test - Mutante - Test Vertical
+	 * Test - Humano mutante - Prueba vertical colunna 2 y 6
 	 * 
 	 * @throws Exception
 	 */
 	@Test
-	public void test09mutantVertical() throws Exception {
+	public void test08mutantVertical() throws Exception {
 		// @formatter:off
 		String request = "{\n" + 
 				"	\"dna\": [\"ACCACCT\",\n" + 
-				"	        \"CTCACTT\",\n" + 
-				"	        \"ACCATAT\",\n" + 
-				"	        \"AAAGACT\",\n" + 
-				"	        \"CAACTCC\",\n" + 
-				"	        \"CAACAAT\",\n" + 
-				"	        \"CAACCCA\"]\n" + 
+				"	          \"CTCACTT\",\n" + 
+				"	          \"ACCATAT\",\n" + 
+				"	          \"AAAGACT\",\n" + 
+				"	          \"CAACTCC\",\n" + 
+				"	          \"CAACAAT\",\n" + 
+				"	          \"CAACCCA\"]\n" + 
 				"}\n" + 
 				""; 
 		mockMvc.perform(
@@ -298,47 +270,21 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Test - Mutante - Test Vertical first and last column
+	 * Test - Obtener estadisticas Humano mutantes
 	 * 
 	 * @throws Exception
 	 */
 	@Test
-	public void test10mutantVertical() throws Exception {
-		// @formatter:off
-		String request = "{\n" + 
-				"	\"dna\": [\"ACCACCT\",\n" + 
-				"	        \"ATCACTT\",\n" + 
-				"	        \"ACCATAC\",\n" + 
-				"	        \"AAAGACG\",\n" + 
-				"	        \"CCACTGG\",\n" + 
-				"	        \"CATCAGG\",\n" + 
-				"	        \"CAACCGG\"]\n" + 
-				"}\n" + 
-				""; 
-		mockMvc.perform(
-				post("/mutant/")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(request.getBytes()))
-				.andExpect(status().isOk());
-		// @formatter:on
-	}
-
-	/**
-	 * Test - Mutant/Human - Status with 2 human and 6 mutant
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void test11StatsMutantHuman() throws Exception {
+	public void test09StatsMutantHuman() throws Exception {
 		// @formatter:off
 		mockMvc.perform(
 				get("/stats/")
 					.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType("application/json"))
-				.andExpect(jsonPath("$.count_mutant_dna").value(6))
+				.andExpect(jsonPath("$.count_mutant_dna").value(4))
 				.andExpect(jsonPath("$.count_human_dna").value(2))
-				.andExpect(jsonPath("$.ratio").value(3));
+				.andExpect(jsonPath("$.ratio").value(2));
 		
 		// @formatter:on
 	}
@@ -349,7 +295,7 @@ public class MeliMutanteApplicationTests {
 	 * @throws Exception
 	 */
 	@Test
-	public void test12HumanSequenceLessThan4() throws Exception {
+	public void test10HumanSequenceLessThan4() throws Exception {
 		// @formatter:off
 		String request = "{\n"+ 
 				"\"dna\": " +
@@ -364,110 +310,6 @@ public class MeliMutanteApplicationTests {
 					.content(request.getBytes()))
 				.andExpect(status().isForbidden())
 			;
-		// @formatter:on
-	}
-
-	/**
-	 * Test - Mutant - Test Diagonal UP/DOWN -Diagonal Zero )
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void test13mutantDiagnonalZero() throws Exception {
-		// @formatter:off
-		String request = "{\n" + 
-				"	\"dna\": [\"AACCGCT\",\n" + 
-				"	        \"CTCACTT\",\n" + 
-				"	        \"ACCCCAT\",\n" + 
-				"	        \"ACGCGCC\",\n" + 
-				"	        \"CACATCC\",\n" + 
-				"	        \"CCACAAT\",\n" + 
-				"	        \"CAACAAT\"]\n" + 
-				"}\n" + 
-				""; 
-		mockMvc.perform(
-				post("/mutant/")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(request.getBytes()))
-				.andExpect(status().isOk());
-		// @formatter:on
-	}
-
-	/**
-	 * Test - Mutant - Test Diagonal UP/DOWN -Diagonal Zero )
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void test13mutantDiagnonalZeroDown() throws Exception {
-		// @formatter:off
-		String request = "{\n" + 
-				"	\"dna\": [\"AACCGCT\",\n" + 
-				"	        \"CTCACTT\",\n" + 
-				"	        \"ACGCTAT\",\n" + 
-				"	        \"ACGGGCC\",\n" + 
-				"	        \"CACAGCC\",\n" + 
-				"	        \"CCACAGT\",\n" + 
-				"	        \"TAACAAG\"]\n" + 
-				"}\n" + 
-				""; 
-		mockMvc.perform(
-				post("/mutant/")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(request.getBytes()))
-				.andExpect(status().isOk());
-		// @formatter:on
-	}
-
-	/**
-	 * Test - Mutant - Olny Diagonal UP/DOWN - Non Diagonal Zero )
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void test14mutantDiagnonalOnlyDown() throws Exception {
-		// @formatter:off
-		String request = "{\n" + 
-				"  \"dna\":[\"AACAGCT\",\n" + 
-				"	        \"CTCAATT\",\n" + 
-				"	        \"ACGCTAT\",\n" + 
-				"	        \"ACGCGCA\",\n" + 
-				"	        \"CACGGCC\",\n" + 
-				"	        \"CCACGGT\",\n" + 
-				"	        \"TAACAGG\"]\n" + 
-				"}\n" + 
-				""; 
-		mockMvc.perform(
-				post("/mutant/")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(request.getBytes()))
-				.andExpect(status().isOk());
-		// @formatter:on
-	}
-
-	/**
-	 * Test - Mutant - Olny Diagonal UP/DOWN - Non Diagonal Zero )
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void test15mutantDiagnonalOnlyuP() throws Exception {
-		// @formatter:off
-		String request = "{\n" + 
-				"  \"dna\":[\"ACATGCT\",\n" + 
-				"	        \"CTTAGTT\",\n" + 
-				"	        \"ATGCTAT\",\n" + 
-				"	        \"TCCCGAC\",\n" + 
-				"	        \"CACTGCC\",\n" + 
-				"	        \"CCATCGT\",\n" + 
-				"	        \"TAACACG\"]\n" + 
-				"}\n" + 
-				""; 
-		mockMvc.perform(
-				post("/mutant/")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(request.getBytes()))
-				.andExpect(status().isOk());
 		// @formatter:on
 	}
 
@@ -490,14 +332,11 @@ public class MeliMutanteApplicationTests {
 				"	        \"CAACAAT\"]\n" + 
 				"}\n" + 
 				""; 
-		ResultActions result = mockMvc.perform(
+		mockMvc.perform(
 				post("/mutant/")
 					.contentType(MediaType.APPLICATION_JSON)
 					.content(request.getBytes()))
 				.andExpect(status().isBadRequest());
-		String response = result.andReturn().getResponse().getContentAsString();
-		response.contains("dna.sequence.inconsistent.length");
-		response.contains("The length of the DNA sequences must be the same size");
 		// @formatter:on
 	}
 
@@ -521,22 +360,16 @@ public class MeliMutanteApplicationTests {
 				"	        \"CAACAAT\"]\n" + 
 				"}\n" + 
 				""; 
-		ResultActions result = mockMvc.perform(
+		 mockMvc.perform(
 				post("/mutant/")
 					.contentType(MediaType.APPLICATION_JSON)
 					.content(request.getBytes()))
 				.andExpect(status().isBadRequest());
-		String response = result.andReturn().getResponse().getContentAsString();
-		response.contains("dna.invalid.nitrogenous.base");
-		response.contains("Invalid Nitrogenous base. The only valid characters are A, T, C e G.");
-		response.contains("The only valid characters are A, T, C e G. Found invalida char in BCCTATC");
 		// @formatter:on
 	}
 
 	/**
-	 * Invalid Request - Invalid Nitrogenous base. The only valid characters are A,
-	 * T, C e G.
-	 * 
+	 * Invalida secuencia enviada,
 	 * 
 	 * @throws Exception
 	 */
@@ -544,38 +377,13 @@ public class MeliMutanteApplicationTests {
 	public void invalidRequestWithoutDNA() throws Exception {
 		// @formatter:off
 		String request = "{ }";
-		ResultActions result = mockMvc.perform(
+		mockMvc.perform(
 				post("/mutant/")
 					.contentType(MediaType.APPLICATION_JSON)
 					.content(request.getBytes()))
 				.andExpect(status().isBadRequest());
-		String response = result.andReturn().getResponse().getContentAsString();
-		response.contains("NotNull.DNASequence.dna");
-		response.contains("DNA sequence is required");
 		
 		// @formatter:on
 	}
-
-	/*
-	 * @Test public void coverageDomain() { DNAStatus dnaStatus = new DNAStatus();
-	 * // coverage only dnaStatus.setHumanCount(0L); dnaStatus.setMutantCount(0L);
-	 * dnaStatus.setRatio(BigDecimal.ZERO); dnaStatus.setTotal(0L);
-	 * System.out.println(dnaStatus);
-	 * 
-	 * DNASequence sequence = new DNASequence();
-	 * sequence.setDna(Arrays.asList("A")); sequence.getDna();
-	 * System.out.println(sequence);
-	 * 
-	 * DNAResult result = new DNAResult(); result.setDna(sequence);
-	 * result.setMutant(false); result.getDna(); System.out.println(result);
-	 * 
-	 * ResponseError responseError = new ResponseError(0, "", "", "");
-	 * responseError.getArgsMessage(); responseError.getErrorCode();
-	 * responseError.getErrorMessage(); responseError.getMessage();
-	 * responseError.getStatus(); responseError.setTimestamp(1L);
-	 * responseError.getTimestamp();
-	 * 
-	 * }
-	 */
 
 }

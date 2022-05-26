@@ -3,27 +3,33 @@ package com.meli.mutant.service.detector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DianonalSequenceProcessor extends MutantDetectorProcessor {
+public class DiagonalSequenceProcessor extends MutantDetectorProcessor {
 
-	private static final Logger log = LoggerFactory.getLogger(DianonalSequenceProcessor.class);
+	private static final Logger log = LoggerFactory.getLogger(DiagonalSequenceProcessor.class);
 	private static final DirectionMatrix DIRECTION = DirectionMatrix.DIAGONAL_DOWN;
 
-	public DianonalSequenceProcessor(DetectorContext context) {
+	public DiagonalSequenceProcessor(DetectorContext context) {
 		super(context);
 	}
 
 	@Override
 	public void searchMutanteSequences() {
-		log.debug("Analyze colums of given dna sequence at direction {}: ", DIRECTION);
+		log.debug("validacion secuencias dna matriz en dirreccion {}: ", DIRECTION);
 		char[][] dna = context.getDna();
 
+		// nos ubicamos en la primera fila, primera columna y empezamos patrones de dna
 		boolean match = findMutantSequence(Coordinate.at(dna, 0, 0));
 		if (match) {
 			return;
 		}
+
+		// @formatter:off
+			//Recorremos apartir de la segunda fila hasta que se cumpla la condicion dna.length - context.getSequenceToMudant()
+			//No tiene sentido recorrer todas la filas por que no cumplirian la secuencia de dna requeridas		
+		// @formatter:on
 		for (int row = 1; row <= dna.length - context.getSequenceToMudant(); row++) {
-			match = findMutantSequence(Coordinate.at(dna, row, 0, row))
-					|| findMutantSequence(Coordinate.at(dna, 0, row, row));
+			match = findMutantSequence(Coordinate.at(dna, row, 0, row));
+			// || findMutantSequence(Coordinate.at(dna, 0, row, row));
 			if (match) {
 				break;
 			}
