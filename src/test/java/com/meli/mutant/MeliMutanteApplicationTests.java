@@ -314,7 +314,7 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Longitud invalida la secuencia de DNA deben contar con la misma longitud
+	 * Longitud invalida en los dna enviados deben ser iguales todas las secuencias
 	 * 
 	 * 
 	 * @throws Exception
@@ -341,8 +341,7 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * VAlidacion de secuencia DNA enviada caracteres validos A,
-	 * T, C e G.
+	 * VAlidacion de secuencia DNA caracteres validos A,T, C e G.
 	 * 
 	 * 
 	 * @throws Exception
