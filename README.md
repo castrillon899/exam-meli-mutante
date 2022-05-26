@@ -43,10 +43,7 @@
 
 | API| DESCRIPCION| URL DE CONSUMO | METODO | CURL
 | ------ | ------ | ------ | ------ |  ------ |
-| /mutant | api que permite determinar si un humano mutante dada una secuencia de dna | https://exam-meli-mutant.herokuapp.com/mutant/ | POST | curl --silent --location --request POST 'https://exam-meli-mutant.herokuapp.com/mutant/' `
---header 'Content-Type: application/json' `
---data-raw '{
-   
+| /mutant | api que permite determinar si un humano mutante dada una secuencia de dna | https://exam-meli-mutant.herokuapp.com/mutant/ | POST | {   
     "dna" :
     ["AAGCAA",
      "CTGTAC",
@@ -54,7 +51,7 @@
      "AGAAAG",
      "CCCATT",
      "TCACTT"]
-}' |
+} |
 
 
 ## Enunciado
