@@ -18,7 +18,7 @@ public class DNAStatsServiceImp implements DNAStatsService {
 	private DNAStatsRepository dnaStatusRepository;
 
 	public StatsDNAResponseDTO getStats() {
-		log.debug("Find statistics of verifications the exposed method (humans, mutants and ratio)");
+		log.debug("Busquedad de estadisticas de humano mutante");
 		com.meli.mutant.entity.DNAStatus getStatistics = dnaStatusRepository.getSummaryStatus();
 		return StatsDNAResponseDTO.builder().humanCount(getStatistics.getHumanCount())
 				.mutantCount(getStatistics.getMutantCount()).ratio(getStatistics.getRatio()).build();

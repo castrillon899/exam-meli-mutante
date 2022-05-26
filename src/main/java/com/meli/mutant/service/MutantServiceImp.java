@@ -53,7 +53,7 @@ public class MutantServiceImp implements MutantService {
 		char[][] dnas = loadDNAToMatrix(dnaSequence);
 		DetectorMutantService mutantDetector = new DetectorMutantService(dnas, DEFAULT_COUNT_SEQUENCES_MATCH_MUTANT,
 				DEFAULT_SEQUENCE_SIZE_MUTANT);
-		log.debug("Start processin to decote if a dnaSequence '{}' is a mutant' DNA", dnaSequence);
+		log.debug("Validando si es humano mutante la secuencia '{}' is a mutant' DNA", dnaSequence);
 		return mutantDetector.isMutante();
 
 	}
