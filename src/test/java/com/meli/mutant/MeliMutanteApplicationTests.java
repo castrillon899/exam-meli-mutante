@@ -120,7 +120,7 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Test - Mutant/Human - Status with one human
+	 * Test - Mutant/Human - Obtenemos las estadisticas de humano mutante
 	 * 
 	 * @throws Exception
 	 */
@@ -192,7 +192,7 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Test - Humano mutante - Diagonal hacia abajo se encuentra secuencia
+	 * Test - Humano mutante - Matriz recorrido diagonal arriba hacia abajo
 	 * 
 	 * @throws Exception
 	 */
@@ -218,7 +218,7 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Test - Humano mutante - Prueba secuencia horizontal fila 0 y 6
+	 * Test - Humano mutante - Prueba matriz secuencia horizontal fila 0 y 6
 	 * 
 	 * @throws Exception
 	 */
@@ -244,7 +244,7 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Test - Humano mutante - Prueba vertical colunna 2 y 6
+	 * Test - Humano mutante - Prueba matriz  vertical colunna 2 y 6
 	 * 
 	 * @throws Exception
 	 */
@@ -290,7 +290,7 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Test - Human - Sequence less than 4
+	 * Para terminar si es humano mutante al menos debe ser mayor a 4
 	 * 
 	 * @throws Exception
 	 */
@@ -314,7 +314,7 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Invalid Request - The length of the DNA sequences must be the same size.
+	 * Longitud invalida la secuencia de DNA deben contar con la misma longitud
 	 * 
 	 * 
 	 * @throws Exception
@@ -341,7 +341,7 @@ public class MeliMutanteApplicationTests {
 	}
 
 	/**
-	 * Invalid Request - Invalid Nitrogenous base. The only valid characters are A,
+	 * VAlidacion de secuencia DNA enviada caracteres validos A,
 	 * T, C e G.
 	 * 
 	 * 

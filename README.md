@@ -4,17 +4,17 @@
 - Fecha creacion: 25/02/2022
 - Autor: Angel Marin Castrillon
 - Email: castrillon89@gmail.com
-- Direccion: https://github.com/castrillon899/exam-meli-mutante.git branch master
+- Git: https://github.com/castrillon899/exam-meli-mutante.git branch master
 - La base de datos se encuentra alojada en nube
 - Clonar el repositorio y correr el proyecto
 ---
 
 ### Tecnologias usadas: 
-- springBoot: Extension de spring framework que nos permite disponibilizar aplicaciones en cuestion de minutos
+- Spring-Boot: Proporciona un conjunto de herramientas para construir rápidamente aplicaciones de Spring que sean fáciles de configurar.
 - mongoDb: Base de datos que nos permite almacenar y consultar informacion rapidamente, relacionada al caso de uso 
 - Git: Versionador de codigo
-- Heroku: Usado para el despliegue de la aplicacion en nube
-- Java 1.8
+- Heroku: Plataforma de servicios en la nube
+- Java:  1.8
 
 
 ---
@@ -22,7 +22,7 @@
 ### Precondiciones: 
 
 
-| escenario de prueba | prueba unitaria |
+| Escenario de prueba | Prueba unitaria |
 | ------ | ------ |
 | validar que se envie al menos una secuencia de dna | invalidRequestWithoutDNA |
 | validar consistencia de los dna enviados, todos deben tener la misma longitud | invalidRequestInconsistentLength |
@@ -39,21 +39,17 @@
 | Validar la logitud de los dnas enviados sean >=4 para determinar si es humano mutante | test10HumanSequenceLessThan4 |
 
 
-###Pruebas 
+---
 
-| API| DESCRIPCION| URL DE CONSUMO | METODO | CURL
+### Definicion de API 
+
+| API| METODO | DESCRIPCION| URL DE CONSUMO | JSON REQUEST
 | ------ | ------ | ------ | ------ |  ------ |
-| /mutant | api que permite determinar si un humano mutante dada una secuencia de dna | https://exam-meli-mutant.herokuapp.com/mutant/ | POST | {   
-    "dna" :
-    ["AAGCAA",
-     "CTGTAC",
-     "TTAAGA",
-     "AGAAAG",
-     "CCCATT",
-     "TCACTT"]
-} |
+| /mutant | POST | Metodo que permite determinar si un humano mutante | https://exam-meli-mutant.herokuapp.com/mutant/ | {  "dna" : ["AAGCAA",  "CTGTAC",   "TTAAGA",   "AGAAAG",   "CCCATT",  "TCACTT"] } |
+| /stats | GET | Metodo que permite obtener las estadisticas de las secuencias DNA consultadas | https://exam-meli-mutant.herokuapp.com/stats/ | |
 
 
+---
 ## Enunciado
 > Magneto quiere reclutar la mayor cantidad de mutantes para poder luchar
 > contra los X-Men.
